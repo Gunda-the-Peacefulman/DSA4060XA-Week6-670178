@@ -1,8 +1,8 @@
 # DSA4060XA-Week6-670178
 
-**Name:** Nicholas Kinyanjui  
-**Student ID:** 670178  
-**Course:** DSA 4060XA — Week 6 Guided Evaluation Lab
+**Name:** Nicholas Kinyanjui
+**Student ID:** 670178
+**Course:** DSA 4060XA (Week 6 Guided Evaluation Lab)
 
 ## Objective
 
@@ -31,11 +31,11 @@ For ranking, candidates are all movies unseen in training. A held-out rating of 
 
 Lower MAE/RMSE is better. Higher ranking scores, coverage, novelty, and diversity are preferable within their respective objectives.
 
-| Model | MAE | RMSE | Precision@3 | Recall@3 | NDCG@3 | Coverage | Novelty (bits) | Diversity |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Popularity Baseline | 0.7523 | 0.9204 | 0.0952 | 0.1429 | 0.0991 | 45% | 1.5304 | 0.9444 |
-| Content-Based | 0.7405 | 0.8496 | 0.2381 | 0.5714 | 0.3644 | 80% | 1.5332 | 0.5071 |
-| Item-Based CF | 0.8584 | 1.0195 | 0.0476 | 0.1429 | 0.0714 | 75% | 1.6280 | 0.7917 |
+| Model               |    MAE |   RMSE | Precision@3 | Recall@3 | NDCG@3 | Coverage | Novelty (bits) | Diversity |
+| ------------------- | -----: | -----: | ----------: | -------: | -----: | -------: | -------------: | --------: |
+| Popularity Baseline | 0.7523 | 0.9204 |      0.0952 |   0.1429 | 0.0991 |      45% |         1.5304 |    0.9444 |
+| Content-Based       | 0.7405 | 0.8496 |      0.2381 |   0.5714 | 0.3644 |      80% |         1.5332 |    0.5071 |
+| Item-Based CF       | 0.8584 | 1.0195 |      0.0476 |   0.1429 | 0.0714 |      75% |         1.6280 |    0.7917 |
 
 **Best for rating prediction:** Content-based has the lowest MAE and RMSE. Its MAE improvement over popularity is only 0.0118; this single small split does not establish a statistically clear advantage. CF performs worse than popularity on both metrics.
 
@@ -53,19 +53,19 @@ Choose **content-based recommendations as the initial model for this dataset**, 
 
 The accepted trade-off is lower within-list genre diversity and somewhat lower novelty than CF in exchange for stronger relevance and broader exposure. A future diversity reranker and explicit exposure-concentration metric could address repeated genre/popularity concentration, but neither has been evaluated here. Treat this as a provisional offline decision.
 
-## Extension A — change K
+## Extension A  change K
 
-| Model | K | Precision@K | Recall@K | NDCG@K |
-| --- | ---: | ---: | ---: | ---: |
-| Popularity Baseline | 1 | 0.0000 | 0.0000 | 0.0000 |
-| Popularity Baseline | 3 | 0.0952 | 0.1429 | 0.0991 |
-| Popularity Baseline | 5 | 0.0571 | 0.1429 | 0.0991 |
-| Content-Based | 1 | 0.1429 | 0.0714 | 0.1429 |
-| Content-Based | 3 | 0.2381 | 0.5714 | 0.3644 |
-| Content-Based | 5 | 0.2000 | 0.8571 | 0.4812 |
-| Item-Based CF | 1 | 0.0000 | 0.0000 | 0.0000 |
-| Item-Based CF | 3 | 0.0476 | 0.1429 | 0.0714 |
-| Item-Based CF | 5 | 0.0571 | 0.2143 | 0.1092 |
+| Model               | K | Precision@K | Recall@K | NDCG@K |
+| ------------------- | -: | ----------: | -------: | -----: |
+| Popularity Baseline | 1 |      0.0000 |   0.0000 | 0.0000 |
+| Popularity Baseline | 3 |      0.0952 |   0.1429 | 0.0991 |
+| Popularity Baseline | 5 |      0.0571 |   0.1429 | 0.0991 |
+| Content-Based       | 1 |      0.1429 |   0.0714 | 0.1429 |
+| Content-Based       | 3 |      0.2381 |   0.5714 | 0.3644 |
+| Content-Based       | 5 |      0.2000 |   0.8571 | 0.4812 |
+| Item-Based CF       | 1 |      0.0000 |   0.0000 | 0.0000 |
+| Item-Based CF       | 3 |      0.0476 |   0.1429 | 0.0714 |
+| Item-Based CF       | 5 |      0.0571 |   0.2143 | 0.1092 |
 
 Content recall rises as more positions recover relevant movies, while precision peaks at K=3 and falls at K=5. Popularity finds no additional relevant movie between K=3 and K=5, so recall stays constant and precision falls. CF recall increases with K. Precision need not decrease monotonically: later positions may improve on a poor first recommendation. Nested lists ensure recall cannot decrease.
 
